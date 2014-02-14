@@ -1,21 +1,72 @@
-## Laravel PHP Framework
+## L'Admin Blau
 
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/version.png)](https://packagist.org/packages/laravel/framework) [![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.png)](https://packagist.org/packages/laravel/framework) [![Build Status](https://travis-ci.org/laravel/framework.png)](https://travis-ci.org/laravel/framework) [![License](https://poser.pugx.org/laravel/framework/license.png)](https://packagist.org/packages/laravel/framework) 
+L'Admin Blau és un gestor de les dades de la colla dels Castellers de la Vila de Gràcia (CVG). 
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, and caching.
+Està basat en els frameworks Laravel [![Latest Stable Version](https://poser.pugx.org/laravel/framework/version.png)](https://packagist.org/packages/laravel/framework) i Bootstrap (https://github.com/twbs/bootstrap/).
 
-Laravel aims to make the development process a pleasing one for the developer without sacrificing application functionality. Happy developers make the best code. To this end, we've attempted to combine the very best of what we have seen in other web frameworks, including frameworks implemented in other languages, such as Ruby on Rails, ASP.NET MVC, and Sinatra.
+### Contribuir a l'Admin Blau
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+**Tots els errors trobats i funcionalitats noves desitjades es poden indicar al repositori [admin-blau](https://github.com/julian-git/admin-blau/issues)**
 
-## Official Documentation
+### Llicència
 
-Documentation for the entire framework can be found on the [Laravel website](http://laravel.com/docs).
-
-### Contributing To Laravel
-
-**All issues and pull requests should be filed on the [laravel/framework](http://github.com/laravel/framework) repository.**
-
-### License
+L'Admin Blau és programari lliure, llicenciat amb la llicència [GPL v3](https://www.gnu.org/licenses/gpl.html).
 
 The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+
+
+## Installation
+
+This installation process is adapted from http://daylerees.com/codebright/getting-started .
+
+* Install git, php, mysql.
+
+* Create a mysql user. Log into mysql using ```mysql -u root -p``` and say
+```
+create user 'admin_blau'@'localhost' identified by 'admin_blau';
+grant all on admin_blau.* to 'admin_blau'@'localhost';
+create database admin_blau;
+```
+
+* Clone the Laravel framework via ```git clone https://github.com/laravel/laravel.git admin-blau/```
+
+* Install [PHP Composer](https://getcomposer.org/download/)
+
+* Inside ```admin_blau/```, run ```php /your/path/to/composer.phar install```
+
+* Rename git origins:
+```
+    git remote rename origin laravel
+    git remote add origin https://github.com/julian-git/admin-blau.git
+```
+
+* Edit ```.git/config``` to say
+```
+[branch "master"]
+        remote = origin 
+        merge = master
+```
+
+* Say 
+```
+git rm artisan
+git commit -am "artisan"
+rm composer.lock
+```
+
+* Say 
+```
+git pull -s recursive -X theirs
+```
+
+* Say
+```
+php artisan migrate:install
+php artisan migrate
+```
+
+* To use the app, open a new shell and say 
+```
+php artisan serve
+``` 
+then open your browser to ```http://localhost:8000```
